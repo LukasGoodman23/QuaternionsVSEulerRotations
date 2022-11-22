@@ -1,0 +1,115 @@
+<script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script><html>
+<head>
+
+<script id="vertex-shader" type="x-shader/x-vertex" >
+precision highp float;
+
+attribute vec4 vPosition;
+
+uniform vec3 rotationAxis;
+uniform float rotAngle;
+uniform vec3 objectOrigin;
+uniform float shaderIndex;
+
+// a matrix to move the item to where it needs to be
+uniform mat4 firstT;
+// a matrix to move the world
+uniform mat4 midT;
+
+#define PI 3.1415926538
+
+void main() {
+
+    if (shaderIndex < 0.0) 
+    {
+        //Rotation by matrix multiplication
+        //midT is the world transformation matrix which rotates the point
+        //firstT is the transformation matrix which scales and transforms the point
+        //such that the object is in the viewport
+        gl_Position =  midT * firstT *  vPosition;
+    }
+    else 
+    {
+        vec3 vertexPosition= vPosition.xyz;
+        vec3 axis= normalize(rotationAxis);
+        float angle= rotAngle;
+        
+        
+        gl_Position= vec4(vertexPosition, 1);
+
+        //center the object in the viewport
+        gl_Position = firstT *  gl_Position;
+        
+
+        vertexPosition= gl_Position.xyz;
+
+        //Quaternion Calculations
+
+        //Rotation Calcs
+        //Let p be the vector representing a point in space
+        //Let u be the axis around which p is to be rotated
+        //Let r be the rotation angle by which p is to be rotated around u
+
+        //This calculation will give the resultant position of p rotated about u by r degrees
+
+        //( p dot u )
+        float a= dot(vertexPosition, axis);
+
+        //( (p dot u) * u )
+        vec3  b= a * axis;
+
+        // ( p - ((p dot u) * u) )
+        vec3  c= vertexPosition - b;
+
+        // ( u cross p )
+        vec3  d= cross(axis, vertexPosition);
+
+        //( cos(r) * ( p - ((p dot u) * u) ) )
+        vec3  e= cos((PI/180.0)*angle) * c;
+
+        //( sin(r) * ( u cross p )
+        vec3  f= sin((PI/180.0)*angle) * d;
+
+        // ( (cos(r) * (p - ((p dot u) * u))) + (sin(r) * (u cross p) )
+        vec3  g= e + f;
+
+        // ( (cos(r) * (p - ((p dot u) * u))) + (sin(r) * (u cross p) + ((p dot u) * u) )
+        vertexPosition= (g + b);
+
+        //Round resulting coordinates
+        for(int i= 0; i < 3; ++i)
+        {
+            vertexPosition[i]= floor(vertexPosition[i] * 10000.0) / 10000.0;
+        }
+    
+        gl_Position= vec4(vertexPosition, 1);
+    }
+}
+
+</script>
+
+<script id="fragment-shader" type="x-shader/x-fragment">
+precision highp float;
+
+void main(){
+   gl_FragColor = vec4(1.0, 0.0, 0.0, 1.0);
+}
+</script>
+
+<script type="text/javascript" src="../Common/webgl-utils.js"></script>
+<script type="text/javascript" src="../Common/initShaders.js"></script>
+<script type="text/javascript" src="../Common/MV.js"></script>
+<script type="text/javascript" src="bunny.js"></script>
+
+
+<script type="text/javascript" src="Widget.js"></script>
+<script type="text/javascript" src="GLCanvas.js"></script>
+<script type="text/javascript" src="Program.js" defer></script>
+
+</head>
+<body>
+<script>
+    var eulerCanvas = new Canvas(500, 500);
+    var quatCanvas = new Canvas(500,500);
+</script>
+</body>
