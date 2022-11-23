@@ -113,3 +113,27 @@ void main(){
     var quatCanvas = new Canvas(500,500);
 </script>
 </body>
+<p>
+    <h2>
+        Left: Bunny Using Euler Rotations</br>
+        Right: Bunny Using Quaternion Rotations</br></br>
+        Instructions:
+    </h2>
+    <h3>
+        Press 1: Reset Bunnies to be scaled and translated to the center of the viewport</br>
+        Press 2: Reset Bunnies and rotate them by 90 degrees about the y-axis</br>
+        Press 3: Reset Bunnies and rotate them by 90 degrees about the y-axis, also incrementally rotate them about the x-axis</br>
+        Press 4: Reset Bunnies and rotate them by 90 degrees about the y-axis, also incrementally rotate them about the z-axis</br>
+    </h3> </br>
+    <h2>
+        Brief Explanation:
+    </h2>
+    <h3>
+        Due to the order of in which the rotations are applied, the 90 degree y-axis rotation will cause</br>
+        the Euler Bunny to experience Gimbal Lock. Gimbal Lock is a result of the order in which matrix</br>
+        multiplies that, at certain angles, will cause two axes to line up with one another and results</br>
+        in the loss of one degree of rotation. The left bunny, using quaternions, does not experience this</br>
+        and is still fully capable of moving in all degrees of rotation.
+    </h3> </br>
+
+</p>
