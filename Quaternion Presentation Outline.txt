@@ -8,3 +8,6 @@ Quaternions
 				Sin
 				Cos
 				Tan
+		[Question for Bennett]: Can I assume that the students understand the concept of a variable and a function?
+			Where do these functions come from?
+				Unit circle
