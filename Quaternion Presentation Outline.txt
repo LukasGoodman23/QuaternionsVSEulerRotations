@@ -1,0 +1,10 @@
+Pi Day Presentation
+
+Quaternions
+	Today Im gonna talk about rotating things
+	Before I start talking about rotation, I need to talk a bit about waves
+		There are 3 "functions" that we are going to use
+			These functions are 
+				Sin
+				Cos
+				Tan
