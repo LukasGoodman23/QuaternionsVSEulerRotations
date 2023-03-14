@@ -5,9 +5,11 @@ Quaternions
 	Before I start talking about rotation, I need to talk a bit about waves
 		There are 3 "functions" that we are going to use
 			These functions are 
-				Sin
-				Cos
-				Tan
-		[Question for Bennett]: Can I assume that the students understand the concept of a variable and a function?
-			Where do these functions come from?
+				Sin, Cos, Tan Waves
 				Unit circle
+				Waves vs Circle
+	How do we use these to rotate things
+		For the purposes of this talk, there are 2 ways that we are concerned with
+			Matrices
+			Complex Numbers
+		
