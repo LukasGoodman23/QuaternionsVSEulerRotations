@@ -62,6 +62,7 @@ function Reset() {
     ry = 0;
     rz = 0;
     rotAngle= 0.0;
+    baseAngle= 0.0;
     gimbelSet= 0.0;
     rotAxis = [0.0,1.0,0.0];
     auxAxis= [0,0,0];
@@ -98,7 +99,6 @@ function Keypress(evnt)
         //x-axis
         case '3':
             Reset();
-            rotAngle= 90.0;
             ry= 90.0;
             StartXIncrement();
             /*
@@ -113,7 +113,6 @@ function Keypress(evnt)
         //z-axis
         case '4':
             Reset();
-            rotAngle= 90.0;
             ry= 90.0;
             StartZIncrement();
             /*
@@ -131,6 +130,7 @@ function Keypress(evnt)
 
 function StartXIncrement()
 {
+    Reset();
     if(timer == null)
     {
         auxAxis= [1,0,0];
@@ -140,6 +140,7 @@ function StartXIncrement()
 
 function StartZIncrement()
 {
+    Reset();
     if(timer == null)
     {
         auxAxis= [0,0,1];
@@ -150,6 +151,8 @@ function StartZIncrement()
 function XIncrement() 
 {
     rx++;
+    ry+= .5;
+    baseAngle+=.5;
     auxAngle++;
     CombineAxes();
     SetUPMidTrans(eulerCanvas);
@@ -161,6 +164,8 @@ function XIncrement()
 function ZIncrement()
 {
     rz++;
+    ry+= .5;
+    baseAngle+=.5;
     auxAngle++;
     CombineAxes();
     SetUPMidTrans(eulerCanvas);

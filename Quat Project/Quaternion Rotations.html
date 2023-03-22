@@ -71,10 +71,10 @@ void main() {
         //( sin(r) * ( u cross p )
         vec3  f= sin((PI/180.0)*angle) * d;
 
-        // ( (cos(r) * (p - ((p dot u) * u))) + (sin(r) * (u cross p) )
+        //( (cos(r) * (p - ((p dot u) * u))) + (sin(r) * (u cross p) )
         vec3  g= e + f;
 
-        // ( (cos(r) * (p - ((p dot u) * u))) + (sin(r) * (u cross p) + ((p dot u) * u) )
+        //( (cos(r) * (p - ((p dot u) * u))) + (sin(r) * (u cross p) + ((p dot u) * u) )
         vertexPosition= (g + b);
 
         //Round resulting coordinates
@@ -105,7 +105,11 @@ void main(){
 
 <script type="text/javascript" src="Widget.js"></script>
 <script type="text/javascript" src="GLCanvas.js"></script>
-<script type="text/javascript" src="Program.js" defer></script>
+<!--
+<script type="text/javascript" src="Program" defer></script>
+-->
+
+<script type="text/javascript" src="Program - Copy.js" defer></script>
 
 </head>
 <body>
